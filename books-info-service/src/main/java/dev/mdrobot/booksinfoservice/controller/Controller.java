@@ -1,4 +1,4 @@
-package dev.mdrobot.booksinfoservice;
+package dev.mdrobot.booksinfoservice.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import dev.mdrobot.booksinfoservice.model.BookInfo;
@@ -16,7 +16,6 @@ import java.util.List;
 public class Controller {
 
     private final BookInfoProvider bookInfoProvider;
-
 
     public Controller(@Autowired BookInfoProvider bookInfoProvider) {
         this.bookInfoProvider = bookInfoProvider;
