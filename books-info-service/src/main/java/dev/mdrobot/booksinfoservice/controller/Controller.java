@@ -24,9 +24,7 @@ public class Controller {
     @GetMapping
     @RequestMapping("/{query}")
     public List<BookInfo> getBooks(@PathVariable("query") String query){
-
         JsonNode response = bookInfoProvider.getBookResponse(query);
-
         return bookInfoProvider.getBookInfo(response);
     }
 }

@@ -2,7 +2,6 @@ package dev.mdrobot.booksinfoservice.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import dev.mdrobot.booksinfoservice.model.BookInfo;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,8 +11,8 @@ import java.util.List;
 @Service
 public class BookInfoProvider {
 
-    @Value("${API_KEY}")
-    private String API_KEY;
+//    @Value("${API_KEY}")
+//    private String API_KEY;
 
     public static String queryURL(String query) {
         return "https://www.googleapis.com/books/v1/volumes?q=" + query;
