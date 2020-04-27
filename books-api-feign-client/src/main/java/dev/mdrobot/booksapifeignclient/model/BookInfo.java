@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Item {
+public class BookInfo {
 
-    private VolumeInfo volumeInfo;
+    private String title;
+    private String author;
 }

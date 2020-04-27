@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface BooksApiClient {
 
     @GetMapping
-    public BooksApiResponse getBooks(@RequestParam("q") String query, @RequestParam("key") String key);
+    public BooksApiResponse getBooks(@RequestParam("q") String query);
 
 }
