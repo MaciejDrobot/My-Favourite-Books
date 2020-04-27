@@ -17,6 +17,7 @@ public class Controller {
 
     private final BookInfoProvider bookInfoProvider;
 
+
     public Controller(@Autowired BookInfoProvider bookInfoProvider) {
         this.bookInfoProvider = bookInfoProvider;
     }

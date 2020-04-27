@@ -1,4 +1,4 @@
-package dev.mdrobot.mainservice.models;
+package mainservice.models;
 
 import java.util.List;
 
