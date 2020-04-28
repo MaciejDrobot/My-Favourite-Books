@@ -20,6 +20,7 @@ public class BooksApiService implements BookService {
     public List<BookInfo> getBooks(String query) {
         BooksApiResponse response = client.getBooks(query);
         List<BookInfo> queryResults = new ArrayList<>();
+
         for (Item item : response.getItems()){
             BookInfo book = new BookInfo(
                     item.getVolumeInfo().getTitle(),
