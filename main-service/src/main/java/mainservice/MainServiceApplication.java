@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableFeignClients("dev.mdrobot.mainservice")
+@EnableFeignClients
 public class MainServiceApplication {
 
 	public static void main(String[] args) {

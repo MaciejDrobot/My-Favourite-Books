@@ -1,4 +1,4 @@
-package mainservice;
+package mainservice.service;
 
 import mainservice.models.BookInfo;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
@@ -13,7 +13,7 @@ import java.util.List;
 @RibbonClient(name = "google-books-api-service")
 public interface BooksApiServiceProxy {
 
-    @GetMapping("/google-books-api-service/find/{q}")
+    @GetMapping("/find/{q}")
     public List<BookInfo> retrieveBooksFromApi(@PathVariable("q") String query);
 
 }
