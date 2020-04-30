@@ -1,6 +1,7 @@
 package mainservice.service;
 
 import mainservice.models.BookInfo;
+import mainservice.models.LoadBalancerTest;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,5 +16,8 @@ public interface BooksApiServiceProxy {
 
     @GetMapping("/find/{q}")
     public List<BookInfo> retrieveBooksFromApi(@PathVariable("q") String query);
+
+    @GetMapping("/balancer/{q}")
+    public LoadBalancerTest balancerTest(@PathVariable("q") String query);
 
 }
