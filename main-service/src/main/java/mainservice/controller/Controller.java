@@ -1,7 +1,6 @@
 package mainservice.controller;
 
 import mainservice.models.BookInfo;
-import mainservice.models.LoadBalancerTest;
 import mainservice.service.BooksApiServiceProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +21,5 @@ public class Controller {
         return proxy.retrieveBooksFromApi(query);
     }
 
-    @GetMapping("/balancer/{query}")
-    public LoadBalancerTest loadBalancerTest(@PathVariable("query") String query){
-        return proxy.balancerTest(query);
-    }
 
 }

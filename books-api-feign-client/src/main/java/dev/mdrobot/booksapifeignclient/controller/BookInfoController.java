@@ -1,7 +1,6 @@
 package dev.mdrobot.booksapifeignclient.controller;
 
 import dev.mdrobot.booksapifeignclient.model.BookInfo;
-import dev.mdrobot.booksapifeignclient.model.LoadBalancerTest;
 import dev.mdrobot.booksapifeignclient.service.BooksApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +20,4 @@ public class BookInfoController {
         return  service.getBooks(query);
     }
 
-    @GetMapping("/balancer/{q}")
-    public LoadBalancerTest loadBalancerTest(@PathVariable("q") String query){
-        return  service.loadBalancerTest(query);
-    }
 }
