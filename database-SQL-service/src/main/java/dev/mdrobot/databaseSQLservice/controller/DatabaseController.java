@@ -5,8 +5,8 @@ import dev.mdrobot.databaseSQLservice.service.MyFavouriteBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/books")
 @RestController
@@ -37,9 +37,15 @@ public class DatabaseController {
     }
 
     @PostMapping("/create")
-    public void createBook(@Valid @RequestBody MyFavouriteBook book) {
+    public void createBook(@RequestBody MyFavouriteBook book) {
         repository.save(book);
     }
 
+    @PutMapping("/update/{id}/{rating}")
+    public void updateRating(@PathVariable("id") Integer id, @PathVariable("rating") int newRating) {
+        Optional<MyFavouriteBook> updatedRating = repository.findById(id);
+        updatedRating.get().setRating(newRating);
+        repository.save(updatedRating.get());
+    }
 
 }
