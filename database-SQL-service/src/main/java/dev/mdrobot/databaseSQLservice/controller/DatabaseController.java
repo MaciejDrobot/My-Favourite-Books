@@ -1,8 +1,12 @@
 package dev.mdrobot.databaseSQLservice.controller;
 
-import dev.mdrobot.databaseSQLservice.model.MyFavouriteBook;
+import dev.mdrobot.databaseSQLservice.model.MyBook;
 import dev.mdrobot.databaseSQLservice.service.MyFavouriteBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,35 +21,54 @@ public class DatabaseController {
 
 
     @GetMapping("/all")
-    public List<MyFavouriteBook> retrieveAllBooks() {
-        return repository.findAll();
+    public ResponseEntity<List<MyBook>> retrieveAllBooks() {
+        List<MyBook> allBooks = createDeleteLink(repository.findAll());
+        return new ResponseEntity<>(allBooks, HttpStatus.OK);
     }
 
     @GetMapping("/byAuthor/{author}")
-    public List<MyFavouriteBook> retrieveByAuthor(@PathVariable("author") String author){
-        return repository.findByAuthor(author);
+    public ResponseEntity <List<MyBook>> retrieveByAuthor(@PathVariable("author") String author){
+        List<MyBook> allBooks = createDeleteLink(repository.findByAuthor(author));
+        return new ResponseEntity<>(allBooks, HttpStatus.OK);
     }
 
     @GetMapping("/byTitle/{title}")
-    public List<MyFavouriteBook> retrieveByTitle(@PathVariable("title") String title){
-        return repository.findByAuthor(title);
+    public ResponseEntity <List<MyBook>> retrieveByTitle(@PathVariable("title") String title){
+        List<MyBook> allBooks = createDeleteLink(repository.findByTitle(title));
+        return new ResponseEntity<>(allBooks, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable Integer id) {
+    public void deleteBook(@PathVariable Integer id) {
         repository.deleteById(id);
     }
 
     @PostMapping("/create")
-    public void createBook(@RequestBody MyFavouriteBook book) {
+    public void createBook(@RequestBody MyBook book) {
         repository.save(book);
     }
 
-    @PutMapping("/update/{id}/{rating}")
+    @PutMapping("/update/{id}/rating/{rating}")
     public void updateRating(@PathVariable("id") Integer id, @PathVariable("rating") int newRating) {
-        Optional<MyFavouriteBook> updatedRating = repository.findById(id);
+        Optional<MyBook> updatedRating = repository.findById(id);
         updatedRating.get().setRating(newRating);
         repository.save(updatedRating.get());
     }
+
+
+    public List<MyBook> createDeleteLink(List<MyBook> list){
+        for(MyBook book : list) {
+            Link deleteBookLink = WebMvcLinkBuilder.linkTo(
+                    DatabaseController.class)
+                    .slash("/delete")
+                    .slash(book.getId())
+                    .withSelfRel()
+                    .withType("DELETE");
+            book.add(deleteBookLink);
+        }
+        return list;
+    }
+
+
 
 }
