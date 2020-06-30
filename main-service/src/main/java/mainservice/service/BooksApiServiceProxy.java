@@ -16,7 +16,7 @@ public interface BooksApiServiceProxy {
     @GetMapping("/find/{q}")
     public List<BookInfo> retrieveBooksFromApi(@PathVariable("q") String query);
 
-    @GetMapping("/balancer/{q}")
-    public LoadBalancerTest balancerTest(@PathVariable("q") String query);
+//    @GetMapping("/balancer/{q}")
+//    public LoadBalancerTest balancerTest(@PathVariable("q") String query);
 
 }

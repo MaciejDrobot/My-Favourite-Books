@@ -1,9 +1,11 @@
 body,
-html {
+html
+{
   height: 100%;
 }
 
-.background::before {
+.background::before
+{
   background-image: url("library.jpg");
   background-color: antiquewhite;
   background-size: cover;
@@ -18,14 +20,30 @@ html {
   opacity: 0.4;
 }
 
-#container {
+#container
+{
+
 }
 
-#searchForm {
+#searchForm
+{
   margin: auto;
   margin-top: 50px;
   padding: 50px;
   position: center;
   background-color: rgb(255, 255, 255);
   opacity: 0.95;
+}
+
+#results
+{
+    margin-top: 50px;
+    font-size: 20px;
+    position: center;
+
+    width: available;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: auto;
+    margin-right: auto;
 }

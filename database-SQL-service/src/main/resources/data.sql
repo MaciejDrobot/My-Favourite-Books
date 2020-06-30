@@ -6,3 +6,4 @@ INSERT INTO my_book (id, author, title, rating)
   VALUES (103, 'Maciej', 'Spring', 5);
 INSERT INTO my_book (id, author, title, rating)
   VALUES (104, 'Drobot', 'Framework', 5);
+

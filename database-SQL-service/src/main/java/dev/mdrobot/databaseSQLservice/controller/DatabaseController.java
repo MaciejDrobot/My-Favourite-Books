@@ -3,14 +3,14 @@ package dev.mdrobot.databaseSQLservice.controller;
 import dev.mdrobot.databaseSQLservice.model.MyBook;
 import dev.mdrobot.databaseSQLservice.service.MyFavouriteBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.Link;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @RequestMapping("/books")
 @RestController
@@ -57,18 +57,12 @@ public class DatabaseController {
 
 
     public List<MyBook> createDeleteLink(List<MyBook> list){
-        for(MyBook book : list) {
-            Link deleteBookLink = WebMvcLinkBuilder.linkTo(
-                    DatabaseController.class)
-                    .slash("/delete")
-                    .slash(book.getId())
-                    .withSelfRel()
-                    .withType("DELETE");
-            book.add(deleteBookLink);
-        }
+        list.forEach(myBook -> myBook.add(linkTo(DatabaseController.class)
+                .slash("delete")
+                .slash(myBook.getId())
+                .withSelfRel()
+                .withType("DELETE")));
         return list;
     }
-
-
 
 }
